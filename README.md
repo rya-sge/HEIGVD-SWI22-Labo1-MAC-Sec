@@ -34,6 +34,7 @@ __ATTENTION :__ Pour vos manipulations, il pourrait être important de bien fixe
 - Scapy fonctionne aussi en mode interactif en invoquant la commande ```scapy```.  
 - Dans le mode interactif, « nom de variable + <enter> » vous retourne le contenu de la variable.
 - Pour visualiser en détail une trame avec Scapy en mode interactif, on utilise la fonction ```show()```. Par exemple, si vous chargez votre trame dans une variable nommée ```beacon```, vous pouvez visualiser tous ces champs et ses valeurs avec la commande ```beacon.show()```. Utilisez cette commande pour connaître les champs disponibles et les formats de chaque champ.
+- Vous pouvez normalement désactiver la randomisation d'adresses MAC de vos dispositifs. Cela peut être utile pour tester le bon fonctionnement de certains de vos scripts. [Ce lien](https://www.howtogeek.com/722653/how-to-disable-random-wi-fi-mac-address-on-android/) vous propose une manière de le faire pour iOS et Android. 
 
 ## Partie 1 - beacons, authenfication
 

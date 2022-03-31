@@ -1,18 +1,3 @@
-#!/usr/bin/env python3  
-# -*- coding: utf-8 -*- 
-# Author : Quentin Le Ray, Ryan Sauge
-# Date : 31.03.2022
-# Développer un script en Python/Scapy : 
-# Développer un script en Python/Scapy capable d'inonder la salle avec des SSID dont le nom correspond 
-# à une liste contenue dans un fichier text fournit par un utilisateur. Si l'utilisateur ne possède pas une liste, 
-# il peut spécifier le nombre d'AP à générer. Dans ce cas, les SSID seront générés de manière aléatoire.
-"""
-Sources :
-https://www.4armed.com/blog/forging-wifi-beacon-frames-using-scapy/
-https://xavki.blog/securite-scapy-scanner-les-reseaux-wifi-ssid-et-leur-adresse-mac/
-https://www-npa.lip6.fr/~tixeuil/m2r/uploads/Main/PROGRES2018_APIScapy.pdf
-"""
-
 import sys
 
 from scapy import *
@@ -25,7 +10,7 @@ import random
 import argparse
 from fakeChannel import createNetwork
 from fakeChannel import SCANNER
-
+from fakeChannel import channel_hopper
 
 
 def main():
@@ -56,13 +41,12 @@ def main():
         FILE = open(args.File, 'r')
         ssidList = FILE.readlines()
     else:
-        nb = input("Nombre d'AP à générer")
+        nb = input("Number of AP to generate")
         l = list(characters)
         for i in (0, int(nb)):
             random.shuffle(l)
             ssidList.append(''.join(l))
     for ssid in ssidList:
-        # Lancement des faux réseaux avec des threads
         _thread.start_new_thread(createNetwork, (bytes(ssid, "utf-8"), scanner, int(args.Channel) ))
     while(True):
         pass

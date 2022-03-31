@@ -183,8 +183,35 @@ Dans les fait c'est un peu plus compliqué dû au fait que la cible garde un pro
 
 ### 3. SSID flood attack
 
-Développer un script en Python/Scapy capable d'inonder la salle avec des SSID dont le nom correspond à une liste contenue dans un fichier text fournit par un utilisateur. Si l'utilisateur ne possède pas une liste, il peut spécifier le nombre d'AP à générer. Dans ce cas, les SSID seront générés de manière aléatoire.
+*Développer un script en Python/Scapy capable d'inonder la salle avec des SSID dont le nom correspond à une liste contenue dans un fichier text fournit par un utilisateur. Si l'utilisateur ne possède pas une liste, il peut spécifier le nombre d'AP à générer. Dans ce cas, les SSID seront générés de manière aléatoire.*
 
+**Réponse**
+
+Script A APPELER  : [SSIDFloodMain](Scripts/SSIDFloodMain.py) 
+
+Lien script en tant que "librairie" : [SSIDFlood](Scripts/SSIDFlood.py) 
+
+Ne pas appeler en tant que tel
+
+- Avec liste
+
+![3](./images/result/3.png)
+
+Apparition des réseaux sur l'ordinateur
+
+![3a-list](./images/result/3a-list.jpg)
+
+- Sans liste
+
+![3b1](./images/result/3b1.png)
+
+
+
+![3b2](./images/result/3b2.png)
+
+Apparition des réseaux sur l'ordinateur
+
+![3b-random](./images/result/3b-random.jpg)
 
 ## Partie 2 - probes
 
@@ -215,6 +242,12 @@ Développer un script en Python/Scapy capable de detecter une STA cherchant un S
 
 Pour la détection du SSID, vous devez utiliser Scapy. Pour proposer un evil twin, vous pouvez très probablement réutiliser du code des exercices précédents ou vous servir d'un outil existant.
 
+**Réponse**
+
+Lien script : [evilTwin](Scripts/evilTwin.py) 
+
+![4](./images/result/4.png)
+
 __Question__ : comment ça se fait que ces trames puissent être lues par tout le monde ? Ne serait-il pas plus judicieux de les chiffrer ?
 
 Il serait en effet plus judicieux de les chiffrer mais en faisant ça la station ne pourrait se connecter qu'à un seul AP et dans le cas d'un réseau de campus par exemple on ne pourrais pas se balader étant donné que la station ne pourra pas changer d'AP connecté car la trame de probe request étant chiffrée le nouvel AP ne saura pas que la station cherche son réseau.
@@ -226,7 +259,13 @@ Car ils randomisent les adresses MAC qu'ils envoient dans leurs probe request. O
 
 ### 5. Détection de clients et réseaux
 
-a) Développer un script en Python/Scapy capable de lister toutes les STA qui cherchent activement un SSID donné
+*a) Développer un script en Python/Scapy capable de lister toutes les STA qui cherchent activement un SSID donné*
+
+**Réponse**
+
+Lien script : [5a](Scripts/5a.py) 
+
+![5a](./images/result/5a.png)
 
 b) Développer un script en Python/Scapy capable de générer une liste d'AP visibles dans la salle et de STA détectés et déterminer quelle STA est associée à quel AP. Par exemple :
 
@@ -237,6 +276,12 @@ B8:17:C2:EB:8F:8F &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 08:EC:F5:28:1A:EF
 9C:F3:87:34:3C:CB &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 00:6B:F1:50:48:3A
 
 00:0E:35:C8:B8:66 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 08:EC:F5:28:1A:EF
+
+**Réponse**
+
+Lien script : [5b](Scripts/5a.py) 
+
+![5b](./images/result/5b.png)
 
 
 ### 6. Hidden SSID reveal (exercices challenge optionnel - donne droit à un bonus)

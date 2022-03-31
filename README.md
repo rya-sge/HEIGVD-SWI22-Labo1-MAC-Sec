@@ -174,6 +174,18 @@ a)	Développer un script en Python/Scapy avec les fonctionnalités suivantes :
 * Permettre à l'utilisateur de choisir le réseau à attaquer
 * Générer un beacon concurrent annonçant un réseau sur un canal différent se trouvant à 6 canaux de séparation du réseau original
 
+Script :  [fakeChannelMain.py](Scripts\fakeChannelMain.py) 
+
+Lien script en tant que "librairie" :  [fakeChannel.py](Scripts\fakeChannel.py) 
+
+Ne pas appeler en tant que tel (la lubrairie)
+
+Script en fonctionnement :
+
+![FakeChannel](images/FakeChannel.PNG)
+
+
+
 __Question__ : Expliquer l'effet de cette attaque sur la cible
 
 Cette attaque a pour effet de créer un faux AP qui propose un faux réseau extrêmement similaire à un réseau légitime. Le but est que la cible se connecte à notre faux réseau sans qu'elle s'en rende compte et que l'on puisse donc récupérer l'entièreté du trafic voir même modifier les paquets qui transitent par notre Evil Twin.

@@ -1,3 +1,6 @@
+#!/usr/bin/env python3
+# -- coding: utf-8 --
+
 # Author : Quentin Le Ray, Ryan Sauge
 # Date : 27.03.2022
 # Basé sur le script trouvé ici : https://github.com/catalyst256/MyJunk/blob/master/scapy-deauth.py

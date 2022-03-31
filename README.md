@@ -130,6 +130,8 @@ Enfin nous avons également vu ce code, apparu souvent après ou pendant l'essai
 * 5 - Disassociated because AP is unable to handle all currently associated stations
 * 8 - Deauthenticated because sending STA is leaving BSS
 
+Note : L'entièreté des scripts que nous avons développés sont conçus pour fonctionner sur un environnement Linux étant donné que nous utilisons des appels à des fonctions du système d'exploitation (iwconfig par exemple).
+
 Voici une image du script de désauthentification en fonctionnement. Une capture Wireshark a également été faite. On peut y voir les trames avec les 4 différents codes pouvant être utilisés avec le script ( [DeauthScript.pcapng](WiresharkCaptures\DeauthScript.pcapng) ).
 
 ![deauthScript](images/deauthScript.PNG)
@@ -174,6 +176,10 @@ a)	Développer un script en Python/Scapy avec les fonctionnalités suivantes :
 
 __Question__ : Expliquer l'effet de cette attaque sur la cible
 
+Cette attaque a pour effet de créer un faux AP qui propose un faux réseau extrêmement similaire à un réseau légitime. Le but est que la cible se connecte à notre faux réseau sans qu'elle s'en rende compte et que l'on puisse donc récupérer l'entièreté du trafic voir même modifier les paquets qui transitent par notre Evil Twin.
+
+Dans les fait c'est un peu plus compliqué dû au fait que la cible garde un profil des réseaux auxquels elle c'est déjà connectée et qu'en plus elle préfèrera toujours le réseau avec une sécurité plus élevée quand ils ont le même SSID. Cette attaque est donc plutôt efficace avec les wifi publics comme les aéroports, Mc Donalds, etc.
+
 
 ### 3. SSID flood attack
 
@@ -211,7 +217,11 @@ Pour la détection du SSID, vous devez utiliser Scapy. Pour proposer un evil twi
 
 __Question__ : comment ça se fait que ces trames puissent être lues par tout le monde ? Ne serait-il pas plus judicieux de les chiffrer ?
 
+Il serait en effet plus judicieux de les chiffrer mais en faisant ça la station ne pourrait se connecter qu'à un seul AP et dans le cas d'un réseau de campus par exemple on ne pourrais pas se balader étant donné que la station ne pourra pas changer d'AP connecté car la trame de probe request étant chiffrée le nouvel AP ne saura pas que la station cherche son réseau.
+
 __Question__ : pourquoi les dispositifs iOS et Android récents ne peuvent-ils plus être tracés avec cette méthode ?
+
+Car ils randomisent les adresses MAC qu'ils envoient dans leurs probe request. On ne peut donc plus suivre la cible puisqu'on ne peut plus l'identifier au milieu de toutes les autres adresses mac/probes request.
 
 
 ### 5. Détection de clients et réseaux

@@ -1,3 +1,3 @@
-from fakeChannel import mainThread
+from fakeChannel import main
 
 main()

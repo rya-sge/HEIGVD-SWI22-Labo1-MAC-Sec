@@ -132,11 +132,11 @@ Enfin nous avons également vu ce code, apparu souvent après ou pendant l'essai
 
 Note : L'entièreté des scripts que nous avons développés sont conçus pour fonctionner sur un environnement Linux étant donné que nous utilisons des appels à des fonctions du système d'exploitation (iwconfig par exemple).
 
-Voici une image du script de désauthentification en fonctionnement. Une capture Wireshark a également été faite. On peut y voir les trames avec les 4 différents codes pouvant être utilisés avec le script ( [DeauthScript.pcapng](WiresharkCaptures\DeauthScript.pcapng) ).
+Voici une image du script de désauthentification en fonctionnement. Une capture Wireshark a également été faite. On peut y voir les trames avec les 4 différents codes pouvant être utilisés avec le script ( [DeauthScript.pcapng](WiresharkCaptures/DeauthScript.pcapng) ).
 
 ![deauthScript](images/deauthScript.PNG)
 
-Lien du script :  [deauthScript.py](Scripts\deauthScript.py) 
+Lien du script :  [deauthScript.py](Scripts/deauthScript.py) 
 
 __Question__ : quels codes/raisons justifient l'envoie de la trame à la STA cible et pourquoi ?
 
@@ -174,9 +174,9 @@ a)	Développer un script en Python/Scapy avec les fonctionnalités suivantes :
 * Permettre à l'utilisateur de choisir le réseau à attaquer
 * Générer un beacon concurrent annonçant un réseau sur un canal différent se trouvant à 6 canaux de séparation du réseau original
 
-Script :  [fakeChannelMain.py](Scripts\fakeChannelMain.py) 
+Script A APPELER  : [fakeChannelMain](Scripts/fakeChannelMain.py) 
 
-Lien script en tant que "librairie" :  [fakeChannel.py](Scripts\fakeChannel.py) 
+Lien script en tant que "librairie" : [fakeChannel](Scripts/fakeChannel.py) 
 
 Ne pas appeler en tant que tel (la lubrairie)
 
@@ -184,19 +184,21 @@ Script en fonctionnement :
 
 ![FakeChannel](images/FakeChannel.PNG)
 
+![FakeChannel1](images/FakeChannel1.PNG)
 
+Création de l'evil tween :
+
+![FakeChannel2](images/FakeChannel2.PNG)
+
+Capture des trames "evil tween" avec Wireshark :
+
+![FakeChannel3](images/FakeChannel3.PNG)
 
 __Question__ : Expliquer l'effet de cette attaque sur la cible
 
 Cette attaque a pour effet de créer un faux AP qui propose un faux réseau extrêmement similaire à un réseau légitime. Le but est que la cible se connecte à notre faux réseau sans qu'elle s'en rende compte et que l'on puisse donc récupérer l'entièreté du trafic voir même modifier les paquets qui transitent par notre Evil Twin.
 
 Dans les fait c'est un peu plus compliqué dû au fait que la cible garde un profil des réseaux auxquels elle c'est déjà connectée et qu'en plus elle préfèrera toujours le réseau avec une sécurité plus élevée quand ils ont le même SSID. Cette attaque est donc plutôt efficace avec les wifi publics comme les aéroports, Mc Donalds, etc.
-
-**Réponse**
-
-Script A APPELER  : [fakeChannelMain](Scripts/fakeChannelMain.py) 
-
-Lien script en tant que "librairie" : [fakeChannel](Scripts/fakeChannel.py) 
 
 
 ### 3. SSID flood attack

@@ -192,6 +192,12 @@ Cette attaque a pour effet de créer un faux AP qui propose un faux réseau extr
 
 Dans les fait c'est un peu plus compliqué dû au fait que la cible garde un profil des réseaux auxquels elle c'est déjà connectée et qu'en plus elle préfèrera toujours le réseau avec une sécurité plus élevée quand ils ont le même SSID. Cette attaque est donc plutôt efficace avec les wifi publics comme les aéroports, Mc Donalds, etc.
 
+**Réponse**
+
+Script A APPELER  : [fakeChannelMain](Scripts/fakeChannelMain.py) 
+
+Lien script en tant que "librairie" : [fakeChannel](Scripts/fakeChannel.py) 
+
 
 ### 3. SSID flood attack
 
@@ -291,7 +297,7 @@ B8:17:C2:EB:8F:8F &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 08:EC:F5:28:1A:EF
 
 **Réponse**
 
-Lien script : [5b](Scripts/5a.py) 
+Lien script : [5b](Scripts/5b.py) 
 
 ![5b](./images/result/5b.png)
 

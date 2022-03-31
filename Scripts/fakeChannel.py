@@ -1,6 +1,11 @@
-"""
+#!/usr/bin/env python3
+# -- coding: utf-8 --
 
-"""
+# Author : Quentin Le Ray, Ryan Sauge
+# Date : 31.03.2022
+# Basé sur le script trouvé ici : https://www.4armed.com/blog/forging-wifi-beacon-frames-using-scapy/
+
+
 
 from scapy import *
 from scapy.layers.dot11 import Dot11, Dot11Beacon, RadioTap, Dot11Elt, Dot11ProbeResp
@@ -37,12 +42,17 @@ def packetRecup(scanner):
             if paquet.type == 0 and paquet.subtype == 8:
                 if str(paquet.info, "utf-8") not in scanner.ap_list:
                     scanner.ap_list[str(paquet.info, "utf-8")] = paquet
-                    print("Réseau SSID: %s et MAC address: %s " % (paquet.info, paquet.addr2))
-                    print("Réseau SSID: %s et MAC address: %s " % (paquet.info, paquet.addr2))
-                    print("Réseau BSSID: %s" % ( paquet[Dot11].addr3))
+                    print("Réseau SSID: ", paquet[Dot11Elt].info.decode())
+                    print("Réseau BSSID: ", paquet.addr2)
                     print("channel : " + str(int(ord(paquet[Dot11Elt:3].info))))
+                    try:
+                        dbm_signal = paquet.dBm_AntSignal
+                    except:
+                        dbm_signal ="N/A"
+                    
+                    print("Puissance : ", dbm_signal, "dBm")
                     print("capabiliy : " + paquet.sprintf("{Dot11Beacon:%Dot11Beacon.cap%}\
-                    {Dot11ProbeResp:%Dot11ProbeResp.cap%}"))
+                    {Dot11ProbeResp:%Dot11ProbeResp.cap%}") + "\n")
                     #return "Réseau SSID: %s et MAC address: %s " % (pkt.info, pkt.addr2)
     return scan
 
@@ -91,12 +101,19 @@ def createNetwork(netSSID, scanner, targetChannel):
 
 def chooseNetworkTarget(scanner):
     cpt = 0
-    print("List of detected networks")
+    print("\nList of detected networks\n")
     for key, values in scanner.ap_list.items():
-        print(f"SSID {str(values.info, 'utf-8')}" )
-        print(f"MAC {values.addr2}" )
-    choice = input("Enter the mac address of ssid to attack")
+        try:
+            dbm_signal = values.dBm_AntSignal
+        except:
+            dbm_signal ="N/A"
+        print(f"SSID: {str(values.info, 'utf-8')},", "Channel:", values[Dot11Beacon].network_stats().get("channel"), ",", "Puissance:", dbm_signal, "dBm")
+    choice = input("\nEnter the ssid to attack ")
     pktChoice = scanner.ap_list.get(choice)
+    while pktChoice == None :
+        print("Error, invalid SSID !")
+        choice = input("Enter the ssid to attack ")
+        pktChoice = scanner.ap_list.get(choice)
     return pktChoice.info # Network name here
 
 def channel_hopper(scanner):
